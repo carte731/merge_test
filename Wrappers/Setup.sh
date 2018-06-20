@@ -67,7 +67,9 @@ case "${setup_routine}" in
         cd "${ROOT}"
         #   Install ANGSD
         cd "${ROOT}"
-        git clone https://github.com/ANGSD/angsd.git
+#        git clone https://github.com/ANGSD/angsd.git
+	wget http://popgen.dk/software/download/angsd/angsd0.920.tar.gz
+	tar -xvf angsd0.920.tar.gz
         cd angsd
 #        git reset --hard 1c0ebb672c25c6e6a53db66c61519e970e48c72e
 ## updates to angsd 0.921
