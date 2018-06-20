@@ -49,7 +49,8 @@ case "${setup_routine}" in
         cd "${ROOT}"
         git clone https://github.com/fgvieira/ngsF.git
         cd ngsF
-        git reset --hard 807ca7216ab8c3fbd98e628ef1638177d5c752b9
+#        git reset --hard 807ca7216ab8c3fbd98e628ef1638177d5c752b9
+	git reset --hard d980b85c0746c297285e2e415193914aa0d0412a ## ngsF 1.2.0
         make
         cd "${ROOT}"
         #   Install HTSLIB
