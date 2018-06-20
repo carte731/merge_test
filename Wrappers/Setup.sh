@@ -70,7 +70,7 @@ case "${setup_routine}" in
 	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
 #        autoheader
 #	autoconf
-	autoreconf
+#	autoreconf
 #	./configure --prefix=$(pwd -P)
 	./configure CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
 	make
