@@ -53,6 +53,15 @@ case "${setup_routine}" in
 	git reset --hard d980b85c0746c297285e2e415193914aa0d0412a ## ngsF 1.2.0
         make
         cd "${ROOT}"
+	## INSTALLING XZ UTIL
+	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
+	tar -xvf xz-5.2.4.tar.gz
+	cd xz-5.2.4
+	./configure --prefix=$(pwd -P)
+	make
+	make install
+	xzPath=$(pwd -P)
+	rm xz-5.2.4.tar.gz
         #   Install HTSLIB
         cd "${ROOT}"
         git clone https://github.com/samtools/htslib.git
@@ -62,7 +71,8 @@ case "${setup_routine}" in
 #        autoheader
 #	autoconf
 	autoreconf
-	./configure --prefix=$(pwd -P)
+#	./configure --prefix=$(pwd -P)
+	./configure CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
         HTSLIB_DIR=`pwd`
