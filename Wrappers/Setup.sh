@@ -18,10 +18,10 @@ function installSAMTools() {
 #	make install # Install SAMTools
 #	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
 
-        wget https://github.com/samtools/samtools/releases/download/1.8/samtools-1.8.tar.bz2 # Download SAMTools
-        tar -xvjf samtools-1.8.tar.bz2 # Extract the tarball
-        rm -f samtools-1.8.tar.bz2 # Get rid of the tarball
-        cd samtools-1.8 # Change into the SAMTools directory
+        wget https://github.com/samtools/samtools/releases/download/1.7/samtools-1.7.tar.bz2 # Download SAMTools
+        tar -xvjf samtools-1.7.tar.bz2 # Extract the tarball
+        rm -f samtools-1.7.tar.bz2 # Get rid of the tarball
+        cd samtools-1.7 # Change into the SAMTools directory
         ./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
         make # Compile the code
         make install # Install SAMTools
@@ -60,8 +60,8 @@ case "${setup_routine}" in
 	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
 #        autoheader
 #	autoconf
-	autoreconf
-	./configure --prefix=$(pwd -P)
+#	autoreconf
+#	./configure --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
         HTSLIB_DIR=`pwd`
