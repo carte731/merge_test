@@ -22,7 +22,7 @@ function installSAMTools() {
         tar -xvjf samtools-1.7.tar.bz2 # Extract the tarball
         rm -f samtools-1.7.tar.bz2 # Get rid of the tarball
         cd samtools-1.7 # Change into the SAMTools directory
-        ./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+        ./configure --with-htslib=${HTSLIB_DIR} --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
         make # Compile the code
         make install # Install SAMTools
         echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
@@ -44,7 +44,7 @@ case "${setup_routine}" in
         cd dependencies
         ROOT=$(pwd)
         #   Check for SAMTools. If not found, install it
-        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
+#        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
         #   Install ngsF
         cd "${ROOT}"
         git clone https://github.com/fgvieira/ngsF.git
@@ -78,6 +78,7 @@ case "${setup_routine}" in
         HTSLIB_DIR=`pwd`
         cd "${ROOT}"
         #   Install ANGSD
+        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
         cd "${ROOT}"
 #        git clone https://github.com/ANGSD/angsd.git
 	wget http://popgen.dk/software/download/angsd/angsd0.920.tar.gz
