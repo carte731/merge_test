@@ -56,12 +56,12 @@ case "${setup_routine}" in
 	## INSTALLING XZ UTIL
 	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
 	tar -xvf xz-5.2.4.tar.gz
+	rm xz-5.2.4.tar.gz
 	cd xz-5.2.4
 	./configure --prefix=$(pwd -P)
 	make
 	make install
-	xzPath=$(pwd -P)
-	rm xz-5.2.4.tar.gz
+	xzPath=$(pwd -P)	
         #   Install HTSLIB
         cd "${ROOT}"
         git clone https://github.com/samtools/htslib.git
