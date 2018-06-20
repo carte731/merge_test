@@ -90,8 +90,9 @@ case "${setup_routine}" in
         cd "${ROOT}"
         git clone https://github.com/mfumagalli/ngsPopGen.git
         cd ngsPopGen
-        git reset --hard bbd73d5caa660f28111c69eefca3230ded4a97ac
-        make
+#        git reset --hard bbd73d5caa660f28111c69eefca3230ded4a97ac
+        git reset --hard 8ead2d469f42942f413f6c93664b568d2eb8a124
+	make
         cd "${ROOT}"
         echo
         #   Display final setup message
