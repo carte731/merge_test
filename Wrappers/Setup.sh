@@ -56,7 +56,8 @@ case "${setup_routine}" in
         cd "${ROOT}"
         git clone https://github.com/ANGSD/angsd.git
         cd angsd
-        git reset --hard 1c0ebb672c25c6e6a53db66c61519e970e48c72e
+#        git reset --hard 1c0ebb672c25c6e6a53db66c61519e970e48c72e
+## updates to angsd 0.921
         make HTSSRC="${HTSLIB_DIR}"
         cd "${ROOT}"
         #   Install ngsAdmix
