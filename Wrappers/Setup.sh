@@ -57,6 +57,7 @@ case "${setup_routine}" in
         git clone https://github.com/samtools/htslib.git
         cd htslib
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
+	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
 #        autoheader
 #	autoconf
 	autoreconf
