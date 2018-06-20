@@ -47,7 +47,7 @@ case "${setup_routine}" in
         cd "${ROOT}"
         git clone https://github.com/samtools/htslib.git
         cd htslib
-        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
+#        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
         make
         make prefix=`pwd` install
         HTSLIB_DIR=`pwd`
