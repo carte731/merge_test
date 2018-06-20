@@ -61,8 +61,8 @@ case "${setup_routine}" in
 	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
 #        autoheader
 #	autoconf
-#	autoreconf
-#	./configure --prefix=$(pwd -P)
+	autoreconf
+	./configure --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
         HTSLIB_DIR=`pwd`
