@@ -9,14 +9,23 @@ SOURCE=$2 # Where is ANGSD-wrapper?
 
 #	Download and install SAMTools 1.3
 function installSAMTools() {
-	wget https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2 # Download SAMTools
-	tar -xvjf samtools-1.3.tar.bz2 # Extract the tarball
-	rm -f samtools-1.3.tar.bz2 # Get rid of the tarball
-	cd samtools-1.3 # Change into the SAMTools directory
-	./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
-	make # Compile the code
-	make install # Install SAMTools
-	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+#	wget https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2 # Download SAMTools
+#	tar -xvjf samtools-1.3.tar.bz2 # Extract the tarball
+#	rm -f samtools-1.3.tar.bz2 # Get rid of the tarball
+#	cd samtools-1.3 # Change into the SAMTools directory
+#	./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+#	make # Compile the code
+#	make install # Install SAMTools
+#	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+
+        wget https://github.com/samtools/samtools/releases/download/1.8/samtools-1.8.tar.bz2 # Download SAMTools
+        tar -xvjf samtools-1.8.tar.bz2 # Extract the tarball
+        rm -f samtools-1.8.tar.bz2 # Get rid of the tarball
+        cd samtools-1.8 # Change into the SAMTools directory
+        ./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+        make # Compile the code
+        make install # Install SAMTools
+        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
 }
 
 #   Export the function
