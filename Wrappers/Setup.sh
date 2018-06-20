@@ -57,8 +57,9 @@ case "${setup_routine}" in
         git clone https://github.com/samtools/htslib.git
         cd htslib
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
-        autoheader
-	autoconf
+#        autoheader
+#	autoconf
+	autoreconf
 	./configure --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
