@@ -54,14 +54,14 @@ case "${setup_routine}" in
         make
         cd "${ROOT}"
 	## INSTALLING XZ UTIL
-#	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
-#	tar -xvf xz-5.2.4.tar.gz
-	git clone https://github.com/xz-mirror/xz.git
+	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
+	tar -xvf xz-5.2.4.tar.gz
+#	git clone https://github.com/xz-mirror/xz.git
 #	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
-#	rm xz-5.2.4.tar.gz
+	rm xz-5.2.4.tar.gz
 	cd xz
-	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
-	./autogen.sh
+#	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
+#	./autogen.sh
 	./configure --prefix=$(pwd -P)
 	make
 	make install
