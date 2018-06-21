@@ -26,7 +26,8 @@ function installSAMTools() {
 	./configure --enable-configure-htslib CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
         make # Compile the code
         make install # Install SAMTools
-        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+#        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+	echo "export LD_LIBRARY_PATH=$(pwd):"'${LD_LIBRARY_PATH}' >> ~/.bash_profile # Add the path to bash_profile
 }
 
 #   Export the function
