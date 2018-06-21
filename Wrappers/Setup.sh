@@ -22,7 +22,8 @@ function installSAMTools() {
         tar -xvjf samtools-1.7.tar.bz2 # Extract the tarball
         rm -f samtools-1.7.tar.bz2 # Get rid of the tarball
         cd samtools-1.7 # Change into the SAMTools directory
-        ./configure --with-htslib=${HTSLIB_DIR} --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+#        ./configure --with-htslib=${HTSLIB_DIR} --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+	./configure --enable-configure-htslib CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
         make # Compile the code
         make install # Install SAMTools
         echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
@@ -69,19 +70,19 @@ case "${setup_routine}" in
 	xzPath=$(pwd -P)	
         #   Install HTSLIB
         cd "${ROOT}"
-        git clone https://github.com/samtools/htslib.git
-        cd htslib
+#        git clone https://github.com/samtools/htslib.git
+#        cd htslib
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
-	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
-        autoheader
-	autoconf
-#	autoreconf
+#	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
+#        autoheader
+#	autoconf
+##	autoreconf
 #	./configure --prefix=$(pwd -P)
-	./configure CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
-	make
-        make prefix=`pwd` install
-        HTSLIB_DIR=`pwd`
-        cd "${ROOT}"
+#	./configure CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
+#	make
+#        make prefix=`pwd` install
+#        HTSLIB_DIR=`pwd`
+#        cd "${ROOT}"
         #   Install ANGSD
         if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
         cd "${ROOT}"
