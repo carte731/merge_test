@@ -81,7 +81,7 @@ case "${setup_routine}" in
 	autoconf
 ##	autoreconf
 #	./configure --prefix=$(pwd -P)
-	./configure CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L "${xzPath}"/lib' --prefix=$(pwd -P)
+	./configure CPPFLAGS='-I $xzPath/include' LDFLAGS='-L $xzPath/lib' --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
         HTSLIB_DIR=`pwd`
