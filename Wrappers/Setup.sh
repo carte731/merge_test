@@ -68,7 +68,8 @@ case "${setup_routine}" in
 	./configure --prefix=$(pwd -P)
 	make
 	make install
-	xzPath=$(pwd -P)	
+	xzPath='pwd'
+	echo -e "\n${xzPath}\n"	
         #   Install HTSLIB
         cd "${ROOT}"
         git clone https://github.com/samtools/htslib.git
