@@ -70,7 +70,7 @@ case "${setup_routine}" in
 	make
 	make install
 	xzPath=$(pwd)
-	echo -e "\n${xzPath}\n"	
+	echo -e "\n$xzPath\n"	
         #   Install HTSLIB
         cd "${ROOT}"
         git clone https://github.com/samtools/htslib.git
@@ -81,6 +81,7 @@ case "${setup_routine}" in
 	autoconf
 ##	autoreconf
 #	./configure --prefix=$(pwd -P)
+	echo -e "\n$xzPath/include\n"
 	./configure CPPFLAGS='-I $xzPath/include' LDFLAGS='-L $xzPath/lib' --prefix=$(pwd -P)
 	make
         make prefix=`pwd` install
