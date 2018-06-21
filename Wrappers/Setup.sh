@@ -68,7 +68,7 @@ case "${setup_routine}" in
 	./configure --prefix=$(pwd -P)
 	make
 	make install
-	xzPath='pwd'
+	xzPath=$(pwd)
 	echo -e "\n${xzPath}\n"	
         #   Install HTSLIB
         cd "${ROOT}"
