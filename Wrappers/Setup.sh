@@ -95,7 +95,8 @@ case "${setup_routine}" in
 #        make prefix=`pwd` install
 	make install
 #	export LD_LIBRARY_PATH=${xzPath}/lib
-	echo "export LD_LIBRARY_PATH=${xzPath}/lib":+:'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib":'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+	echo "export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+:LD_LIBRARY_PATH:}"${xzPath}"
         HTSLIB_DIR=`pwd`
         cd "${ROOT}"
         #   Install ANGSD
