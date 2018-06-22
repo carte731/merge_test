@@ -18,10 +18,10 @@ function installSAMTools() {
 #	make install # Install SAMTools
 #	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
 
-        wget https://github.com/samtools/samtools/releases/download/1.7/samtools-1.7.tar.bz2 # Download SAMTools
-        tar -xvjf samtools-1.7.tar.bz2 # Extract the tarball
-        rm -f samtools-1.7.tar.bz2 # Get rid of the tarball
-        cd samtools-1.7 # Change into the SAMTools directory
+        wget https://github.com/samtools/samtools/releases/download/1.8/samtools-1.8.tar.bz2 # Download SAMTools
+        tar -xvjf samtools-1.8.tar.bz2 # Extract the tarball
+        rm -f samtools-1.8.tar.bz2 # Get rid of the tarball
+        cd samtools-1.8 # Change into the SAMTools directory
         ./configure --with-htslib=${HTSLIB_DIR} --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
 #	./configure --enable-configure-htslib CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
         make # Compile the code
@@ -78,11 +78,11 @@ case "${setup_routine}" in
         #   Install HTSLIB
         cd "${ROOT}"
 #        git clone https://github.com/samtools/htslib.git
-	wget https://github.com/samtools/htslib/releases/download/1.7/htslib-1.7.tar.bz2
-	tar -xvf htslib-1.7.tar.bz2
-	rm htslib-1.7.tar.bz2
+	wget https://github.com/samtools/htslib/releases/download/1.8/htslib-1.8.tar.bz2
+	tar -xvf htslib-1.8.tar.bz2
+	rm htslib-1.8.tar.bz2
 #        cd htslib
-	cd htslib-1.7
+	cd htslib-1.8
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
 #	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
 #        autoheader
