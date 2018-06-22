@@ -96,7 +96,8 @@ case "${setup_routine}" in
 	make install
 #	export LD_LIBRARY_PATH=${xzPath}/lib
         if [ -z "${LD_LIBRARY_PATH}" ]; then
-                echo "export LD_LIBRARY_PATH=${xzPath}/lib" >> ~/.bash_profile
+                LD_LIBRARY_PATH="${xzPath}/lib"
+                echo "export $LD_LIBRARY_PATH" >> ~/.bash_profile
         else
                 echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
         fi
