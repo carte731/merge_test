@@ -95,7 +95,12 @@ case "${setup_routine}" in
 #        make prefix=`pwd` install
 	make install
 #	export LD_LIBRARY_PATH=${xzPath}/lib
-	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+        if [ "${LD_LIBRARY_PATH}" ]; then
+                echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+        else
+                echo "export LD_LIBRARY_PATH=${xzPath}/lib" >> ~/.bash_profile
+        fi
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
 #	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH-}' >> ~/.bash_profile
         HTSLIB_DIR=`pwd`
         cd "${ROOT}"
