@@ -102,9 +102,10 @@ case "${setup_routine}" in
         #         echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
         # fi
         # export LD_LIBRARY_PATH="${xzPath}/lib"${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
 #	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH-}' >> ~/.bash_profile
-        HTSLIB_DIR=`pwd`
+        echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${xzPath}/lib" >> ~/.bash_profile
+        HTSLIB_DIR=$(pwd -P)
         cd "${ROOT}"
         #   Install ANGSD
         if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
