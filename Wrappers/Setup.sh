@@ -85,7 +85,7 @@ case "${setup_routine}" in
 ##	autoreconf
 #	./configure --prefix=$(pwd -P)
 	echo -e "\n$xzPath/include\n"
-	./configure CPPFLAGS='-I $xzPath/include' LDFLAGS='-L $xzPath/lib' --prefix=$(pwd -P)
+	./configure CPPFLAGS=" -I ${xzPath}/include" LDFLAGS=" -L ${xzPath}/lib" --prefix=$(pwd -P)
 	make
 #        make prefix=`pwd` install
 	make install
