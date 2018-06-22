@@ -73,7 +73,7 @@ case "${setup_routine}" in
 	./configure --prefix=$(pwd -P)
 	make
 	make install
-	xzPath=$(pwd)
+	xzPath=$(pwd -P)
 	echo -e "\n$xzPath\n"	
         #   Install HTSLIB
         cd "${ROOT}"
@@ -101,8 +101,8 @@ case "${setup_routine}" in
         # else
         #         echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
         # fi
-        export LD_LIBRARY_PATH="${xzPath}/lib"${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+        # export LD_LIBRARY_PATH="${xzPath}/lib"${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
 #	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH-}' >> ~/.bash_profile
         HTSLIB_DIR=`pwd`
         cd "${ROOT}"
