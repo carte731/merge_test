@@ -73,18 +73,22 @@ case "${setup_routine}" in
 	echo -e "\n$xzPath\n"	
         #   Install HTSLIB
         cd "${ROOT}"
-        git clone https://github.com/samtools/htslib.git
-        cd htslib
+#        git clone https://github.com/samtools/htslib.git
+	wget https://github.com/samtools/htslib/releases/download/1.7/htslib-1.7.tar.bz2
+	tar -xvf htslib-1.7.tar.bz2
+#        cd htslib
+	cd htslib-1.7
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
-	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
-        autoheader
-	autoconf
+#	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
+#        autoheader
+#	autoconf
 ##	autoreconf
 #	./configure --prefix=$(pwd -P)
 	echo -e "\n$xzPath/include\n"
 	./configure CPPFLAGS='-I $xzPath/include' LDFLAGS='-L $xzPath/lib' --prefix=$(pwd -P)
 	make
-        make prefix=`pwd` install
+#        make prefix=`pwd` install
+	make install
         HTSLIB_DIR=`pwd`
         cd "${ROOT}"
         #   Install ANGSD
