@@ -26,8 +26,8 @@ function installSAMTools() {
 #	./configure --enable-configure-htslib CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
         make # Compile the code
         make install # Install SAMTools
-#        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
-	echo "export LD_LIBRARY_PATH=$(pwd):"'${LD_LIBRARY_PATH}' >> ~/.bash_profile # Add the path to bash_profile
+        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+#	echo "export LD_LIBRARY_PATH=$(pwd):"'${LD_LIBRARY_PATH}' >> ~/.bash_profile # Add the path to bash_profile
 }
 
 #   Export the function
@@ -57,12 +57,16 @@ case "${setup_routine}" in
         cd "${ROOT}"
 	## INSTALLING XZ UTIL
 ##	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
-	cp ~/xz-5.2.4.tar.gz xz-5.2.4.tar.gz
-	tar -xvf xz-5.2.4.tar.gz
+	wget https://github.com/xz-mirror/xz/releases/download/v5.2.2/xz-5.2.2.tar.gz
+#	cp ~/xz-5.2.4.tar.gz xz-5.2.4.tar.gz
+#	tar -xvf xz-5.2.4.tar.gz
+	tar -xvf xz-5.2.2.tar.gz
 #	git clone https://github.com/xz-mirror/xz.git
 #	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
-	rm xz-5.2.4.tar.gz
-	cd xz-5.2.4
+#	rm xz-5.2.4.tar.gz
+	rm xz-5.2.2.tar.gz
+	cd xz-5.2.2
+#	cd xz-5.2.4
 #	cd xz
 #	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
 #	./autogen.sh
@@ -76,6 +80,7 @@ case "${setup_routine}" in
 #        git clone https://github.com/samtools/htslib.git
 	wget https://github.com/samtools/htslib/releases/download/1.7/htslib-1.7.tar.bz2
 	tar -xvf htslib-1.7.tar.bz2
+	rm htslib-1.7.tar.bz2
 #        cd htslib
 	cd htslib-1.7
 #        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
