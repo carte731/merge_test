@@ -103,7 +103,7 @@ case "${setup_routine}" in
         # fi
         # export LD_LIBRARY_PATH="${xzPath}/lib"${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 #	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
-	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bashrc
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bashrc
 #        echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${xzPath}/lib" >> ~/.bash_profile
         HTSLIB_DIR=$(pwd -P)
         cd "${ROOT}"
