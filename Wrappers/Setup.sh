@@ -9,14 +9,25 @@ SOURCE=$2 # Where is ANGSD-wrapper?
 
 #	Download and install SAMTools 1.3
 function installSAMTools() {
-	wget https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2 # Download SAMTools
-	tar -xvjf samtools-1.3.tar.bz2 # Extract the tarball
-	rm -f samtools-1.3.tar.bz2 # Get rid of the tarball
-	cd samtools-1.3 # Change into the SAMTools directory
-	./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
-	make # Compile the code
-	make install # Install SAMTools
-	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+#	wget https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2 # Download SAMTools
+#	tar -xvjf samtools-1.3.tar.bz2 # Extract the tarball
+#	rm -f samtools-1.3.tar.bz2 # Get rid of the tarball
+#	cd samtools-1.3 # Change into the SAMTools directory
+#	./configure --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+#	make # Compile the code
+#	make install # Install SAMTools
+#	echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+
+        wget https://github.com/samtools/samtools/releases/download/1.8/samtools-1.8.tar.bz2 # Download SAMTools
+        tar -xvjf samtools-1.8.tar.bz2 # Extract the tarball
+        rm -f samtools-1.8.tar.bz2 # Get rid of the tarball
+        cd samtools-1.8 # Change into the SAMTools directory
+        ./configure --with-htslib=${HTSLIB_DIR} --prefix=$(pwd) # Configure the installation process, setting the install directory to be here
+#	./configure --enable-configure-htslib CPPFLAGS='-I "${xzPath}"/include' LDFLAGS='-L ${xzPath}"/lib' --prefix=$(pwd -P)
+        make # Compile the code
+        make install # Install SAMTools
+        echo "export PATH=$(pwd):"'${PATH}' >> ~/.bash_profile # Add the path to bash_profile
+#	echo "export LD_LIBRARY_PATH=$(pwd):"'${LD_LIBRARY_PATH}' >> ~/.bash_profile # Add the path to bash_profile
 }
 
 #   Export the function
@@ -35,30 +46,80 @@ case "${setup_routine}" in
         cd dependencies
         ROOT=$(pwd)
         #   Check for SAMTools. If not found, install it
-        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
+#        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
         #   Install ngsF
         cd "${ROOT}"
         git clone https://github.com/fgvieira/ngsF.git
         cd ngsF
-        git reset --hard 807ca7216ab8c3fbd98e628ef1638177d5c752b9
+#        git reset --hard 807ca7216ab8c3fbd98e628ef1638177d5c752b9
+	git reset --hard d980b85c0746c297285e2e415193914aa0d0412a ## ngsF 1.2.0
         make
         cd "${ROOT}"
+	## INSTALLING XZ UTIL
+##	wget https://tukaani.org/xz/xz-5.2.4.tar.gz
+#	wget https://github.com/xz-mirror/xz/releases/download/v5.2.2/xz-5.2.2.tar.gz
+#	cp ~/xz-5.2.4.tar.gz xz-5.2.4.tar.gz
+#	tar -xvf xz-5.2.4.tar.gz
+#	tar -xvf xz-5.2.2.tar.gz
+#	git clone https://github.com/xz-mirror/xz.git
+#	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
+#	rm xz-5.2.4.tar.gz
+#	rm xz-5.2.2.tar.gz
+#	cd xz-5.2.2
+#	cd xz-5.2.4
+#	cd xz
+#	git reset --hard 9815cdf6987ef91a85493bfcfd1ce2aaf3b47a0a
+#	./autogen.sh
+#	./configure --prefix=$(pwd -P)
+#	make
+#	make install
+#	xzPath=$(pwd -P)
+#	echo -e "\n$xzPath\n"	
         #   Install HTSLIB
         cd "${ROOT}"
-        git clone https://github.com/samtools/htslib.git
-        cd htslib
-        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
-        make
-        make prefix=`pwd` install
-        HTSLIB_DIR=`pwd`
+#        git clone https://github.com/samtools/htslib.git
+	wget https://github.com/samtools/htslib/releases/download/1.8/htslib-1.8.tar.bz2
+	tar -xvf htslib-1.8.tar.bz2
+	rm htslib-1.8.tar.bz2
+#        cd htslib
+	cd htslib-1.8
+#        git reset --hard bb03b0287bc587c3cbdc399f49f0498eef86b44a
+#	git reset --hard 209f94ba28d62a566c77e3fbf034e3ee76807815
+#        autoheader
+#	autoconf
+##	autoreconf
+	./configure --prefix=$(pwd -P)
+#	echo -e "\n$xzPath/include\n"
+#	./configure CPPFLAGS=" -I ${xzPath}/include" LDFLAGS=" -L ${xzPath}/lib" --prefix=$(pwd -P)
+	make
+#        make prefix=`pwd` install
+	make install
+#	export LD_LIBRARY_PATH=${xzPath}/lib
+        # if [ -z "${LD_LIBRARY_PATH}" ]; then
+        #         LD_LIBRARY_PATH="${xzPath}/lib"
+        #         echo "export $LD_LIBRARY_PATH" >> ~/.bash_profile
+        # else
+        #         echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+        # fi
+        # export LD_LIBRARY_PATH="${xzPath}/lib"${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bash_profile
+#	echo "export LD_LIBRARY_PATH=${xzPath}/lib:"'${LD_LIBRARY_PATH}' >> ~/.bashrc
+#        echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${xzPath}/lib" >> ~/.bash_profile
+        HTSLIB_DIR=$(pwd -P)
         cd "${ROOT}"
         #   Install ANGSD
+        if ! $(command -v samtools > /dev/null 2> /dev/null); then cd "${ROOT}"; installSAMTools; source ~/.bash_profile;cd "${ROOT}"; fi
         cd "${ROOT}"
-        git clone https://github.com/ANGSD/angsd.git
+#        git clone https://github.com/ANGSD/angsd.git
+	wget http://popgen.dk/software/download/angsd/angsd0.920.tar.gz
+	tar -xvf angsd0.920.tar.gz
+	rm angsd0.920.tar.gz
         cd angsd
-        git reset --hard 1c0ebb672c25c6e6a53db66c61519e970e48c72e
-        make HTSSRC="${HTSLIB_DIR}"
-        cd "${ROOT}"
+#        git reset --hard 1c0ebb672c25c6e6a53db66c61519e970e48c72e
+## updates to angsd 0.921
+	echo -e "\nMAKING ANGSD 0.921\n"
+        make HTSSRC="${HTSLIB_DIR}" 
+	cd "${ROOT}"
         #   Install ngsAdmix
         cd "${ROOT}"
         mkdir ngsAdmix
@@ -70,8 +131,9 @@ case "${setup_routine}" in
         cd "${ROOT}"
         git clone https://github.com/mfumagalli/ngsPopGen.git
         cd ngsPopGen
-        git reset --hard bbd73d5caa660f28111c69eefca3230ded4a97ac
-        make
+#        git reset --hard bbd73d5caa660f28111c69eefca3230ded4a97ac
+        git reset --hard 8ead2d469f42942f413f6c93664b568d2eb8a124
+	make
         cd "${ROOT}"
         echo
         #   Display final setup message
